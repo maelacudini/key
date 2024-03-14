@@ -1,0 +1,20 @@
+.feedback {
+  pointer-events: none;
+  position: fixed;
+  left: 2rem;
+  right: 2rem;
+  bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+
+  div {
+    background-color: #d7dae2;
+    width: 100%;
+    max-width: 45rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

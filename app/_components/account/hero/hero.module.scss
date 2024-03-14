@@ -1,0 +1,96 @@
+.hero {
+  margin: 2rem auto;
+  width: 100%;
+  max-width: 90rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 35rem;
+    border-radius: 1rem;
+    padding: 2rem;
+
+    .avatar,
+    .noavatar {
+      object-fit: cover;
+      object-position: center;
+      border-radius: 1rem;
+      position: relative;
+    }
+
+    .overlay {
+      background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+      position: absolute;
+      border-radius: 1rem;
+      width: 100%;
+      height: 100%;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      top: 0;
+      z-index: 80;
+    }
+
+    .username {
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+      z-index: 81;
+    }
+
+    .button {
+      position: absolute;
+      bottom: 2rem;
+      left: 2rem;
+      z-index: 81;
+    }
+
+    .openAvatar {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      z-index: 81;
+    }
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    .col {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      width: 70%;
+
+      .openBio {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 1rem;
+
+        textarea {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .col {
+    width: 100% !important;
+  }
+
+  .openAvatar {
+    flex-direction: column;
+  }
+}

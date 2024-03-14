@@ -1,0 +1,194 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Raleway:wght@100;200;300;400;500;600;700;800&display=swap");
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  scroll-behavior: smooth;
+  padding: 5lvw;
+  margin: 0;
+}
+
+h1,
+.h1 {
+  font-size: clamp(3.125rem, -0.7813rem + 12.5vw, 5rem);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+h2,
+.h2 {
+  font-size: clamp(2.5rem, 1.7188rem + 2.5vw, 3.125rem);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+h3,
+.h3 {
+  font-size: clamp(1.875rem, 1.0938rem + 2.5vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+h4,
+.h4 {
+  font-size: clamp(1.5625rem, 1.1719rem + 1.25vw, 1.875rem);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+p,
+a,
+button {
+  font-size: clamp(1rem, 0.875rem + 0.4vw, 1.125rem);
+  text-decoration: none;
+  color: #000;
+  transition: color 0.3s;
+}
+
+small {
+  color: #00000080;
+}
+
+.white {
+  color: #fff;
+}
+
+.black {
+  color: #000;
+}
+
+.gray {
+  color: #00000050;
+}
+
+.italic {
+  font-family: "Merriweather", serif;
+}
+
+.link:hover {
+  color: #00000050;
+}
+
+.b-yellow {
+  width: fit-content;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  color: black;
+  background-color: #f1feab;
+  border: 1px solid #00000050;
+  border-radius: 2.5rem;
+  transition: 0.3s;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.b-yellow:hover {
+  background-color: black;
+  color: #f1feab;
+  transition: 0.3s;
+}
+
+.b-out {
+  width: fit-content;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  border: 1px solid #00000050;
+  color: black;
+  background-color: white;
+  border-radius: 2.5rem;
+  transition: 0.3s;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.b-out:hover {
+  background-color: black;
+  color: #f1feab;
+  transition: 0.3s;
+}
+
+.b-full {
+  width: fit-content;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  background-color: black;
+  border: 1px solid #00000050;
+  color: white;
+  border-radius: 2.5rem;
+  transition: 0.3s;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.b-full:hover {
+  background-color: #f1feab;
+  border: 1px solid #00000050;
+  color: black;
+  transition: 0.3s;
+}
+
+.card {
+  border: 1px solid #00000050;
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+input,
+textarea,
+select,
+option {
+  border: 1px solid #00000025;
+  border-radius: 2.5rem;
+  padding: 1rem 2rem;
+  background-color: transparent;
+  transition: all 0.3s;
+  font-size: clamp(1rem, 0.875rem + 0.4vw, 1.125rem);
+  font-family: inherit;
+  background-color: white;
+}
+
+textarea {
+  padding: 2rem !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+option:focus {
+  outline: none;
+  background-color: rgb(235, 235, 235);
+}
+
+.loading,
+.notfound,
+.error {
+  height: calc(100lvh - 6rem);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  gap: 2rem;
+}

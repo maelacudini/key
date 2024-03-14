@@ -1,0 +1,27 @@
+.topics {
+  margin: 5rem auto;
+  width: 100%;
+  max-width: 90rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  .inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+
+    .topic {
+      border: 1px solid#00000025;
+      padding: 0.5rem 1rem;
+      transition: 0.3s;
+      background-color: white;
+
+      &:hover {
+        background-color: black;
+        color: #f1feab;
+        transition: 0.3s;
+      }
+    }
+  }
+}

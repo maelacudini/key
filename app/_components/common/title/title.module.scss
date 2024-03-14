@@ -1,0 +1,10 @@
+.title {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+
+  .wordContainer {
+    overflow-y: hidden;
+    margin-right: 0.8rem;
+  }
+}

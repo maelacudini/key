@@ -1,0 +1,50 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+
+  .user {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+
+    .length {
+      text-transform: uppercase;
+    }
+
+    .avatar {
+      border-radius: 0.5rem;
+      margin: 0 auto;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  .bottom {
+    border-top: 1px solid #00000025;
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .social {
+      background-color: black;
+      width: fit-content;
+      padding: 0.5rem 1rem;
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        transform: rotate(45deg);
+        filter: invert(100%);
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+.cont {
+  .review {
+    border-bottom: 1px solid #00000025;
+    padding: 2rem 0rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .description {
+    padding: 1rem 0rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+
+    p {
+      flex-basis: 70%;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .description {
+    flex-direction: column !important;
+  }
+}

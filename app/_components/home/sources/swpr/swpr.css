@@ -1,0 +1,45 @@
+#sources .swiper {
+  height: 40rem;
+  width: 100%;
+}
+
+#sources .swiper-slide {
+  height: 35rem;
+  width: 25rem;
+  transform: scale(0.9);
+  transition: transform 0.3s;
+}
+
+#sources .swiper-slide-active {
+  transform: scale(1);
+}
+
+#sources .swiper-button-prev::after,
+#sources .swiper-button-next::after {
+  color: #000;
+  border: 1px solid #00000025;
+  border-radius: 100%;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+}
+
+#sources .swiper-button-prev,
+#sources .swiper-button-next {
+  position: absolute;
+  bottom: 0;
+  top: unset;
+}
+
+#sources .swiper-button-prev {
+  left: 2rem;
+}
+
+#sources .swiper-button-next {
+  right: 2rem;
+}
+
+@media (max-width: 500px) {
+  #sources .swiper-slide {
+    width: 100% !important;
+  }
+}

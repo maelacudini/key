@@ -1,0 +1,32 @@
+.nav {
+  position: fixed;
+  right: 2.5lvw;
+  top: 2.5lvw;
+  padding: 2rem;
+  height: 35rem;
+  width: 22.5rem;
+  border-radius: 2.5rem;
+  background-color: #d7dae2;
+  z-index: 99;
+  transform-origin: right;
+
+  .links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .close {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.5rem;
+    }
+  }
+
+  .date {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    right: 2rem;
+  }
+}
