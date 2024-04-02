@@ -21,7 +21,6 @@ export default function Hero({ user }) {
     handleEditAvatar,
     initialState
   );
-
   const [stateBio, formActionBio] = useFormState(handleEditBio, initialState);
 
   useEffect(() => {
@@ -64,7 +63,11 @@ export default function Hero({ user }) {
           {openAvatar ? "close" : "edit avatar"}
         </button>
         {openAvatar && (
-          <form action={formActionAvatar} className={style.openAvatar}>
+          <form
+            action={formActionAvatar}
+            className={style.openAvatar}
+            onSubmit={() => setOpenAvatar(!openAvatar)}
+          >
             <input
               id="avatar"
               name="avatar"
@@ -82,7 +85,11 @@ export default function Hero({ user }) {
         <div className={style.col}>
           <p className="h4">{user?.email}</p>
           {openBio ? (
-            <form action={formActionBio} className={style.openBio}>
+            <form
+              action={formActionBio}
+              className={style.openBio}
+              onSubmit={() => setOpenBio(!openBio)}
+            >
               <textarea
                 id="bio"
                 name="bio"

@@ -6,7 +6,6 @@ import Header from './_components/common/header/Header'
 import { LoadingFeedbackProvider } from '@/context/context'
 import Feedback from './_components/common/feedback/Feedback'
 
-
 //font
 const font = Inter({ subsets: ['latin'] })
 
@@ -92,7 +91,7 @@ export const metadata = {
   },
 }
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body id='body' className={font.className}>

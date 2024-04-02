@@ -21,6 +21,14 @@ export default function Addreview({ userId }) {
   const [keywords, setKeywords] = useState([]);
   const [state, formAction] = useFormState(addReview, initialState);
 
+  const handleCheckboxClick = (topic) => {
+    if (keywords.includes(topic)) {
+      setKeywords(keywords.filter((keyword) => keyword !== topic));
+    } else {
+      setKeywords([...keywords, topic]);
+    }
+  };
+
   useEffect(() => {
     if (openChecks) {
       document.body.style.overflow = "hidden";
@@ -53,6 +61,7 @@ export default function Addreview({ userId }) {
           key={"form"}
           className={style.form}
           action={formAction}
+          onSubmit={() => setOpenForm(!openForm)}
         >
           <div className={style.row}>
             <div className={style.cont}>
@@ -128,22 +137,7 @@ export default function Addreview({ userId }) {
                       <label key={topic + i} id={topic}>
                         {topic}
                         <input
-                          onChange={(e) => {
-                            if (e.target.checked) {
-                              if (keywords.length < 3) {
-                                setKeywords((prevKeywords) => [
-                                  ...prevKeywords,
-                                  e.target.value,
-                                ]);
-                              }
-                            } else {
-                              setKeywords((prevKeywords) =>
-                                prevKeywords.filter(
-                                  (keyword) => keyword !== e.target.value
-                                )
-                              );
-                            }
-                          }}
+                          onChange={() => handleCheckboxClick(topic)}
                           value={topic}
                           checked={keywords.includes(topic)}
                           type="checkbox"

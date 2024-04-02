@@ -1,13 +1,11 @@
 import style from "./footer.module.scss";
-import Link from "next/link";
 import { cards, socials } from "./data";
-import { getAllReviews, getAllUsers } from "@/app/_utils/functions";
+import { getLength } from "@/app/_utils/functions";
 
 export default async function Footer() {
-  const users = await getAllUsers();
-  const reviews = await getAllReviews();
-  const totalUsers = users.length;
-  const totalReviews = reviews.length;
+  const reviews = await getLength();
+  const totalUsers = reviews.totalUsers;
+  const totalReviews = reviews.totalReviews;
 
   return (
     <footer className={style.footer}>
@@ -31,9 +29,6 @@ export default async function Footer() {
                 </a>
               </div>
             ))}
-            <Link className="link" href={"/signup"}>
-              Sign up
-            </Link>
           </div>
         </div>
       </div>

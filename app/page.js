@@ -1,20 +1,21 @@
 import dynamic from "next/dynamic";
 import Inbox from "./_components/home/inbox/Inbox";
+import Loading from "./loading";
 
 const DynamicHero = dynamic(() => import('./_components/home/hero/Hero'), {
-  loading: () => <p>Loading...</p>,
+  loading: () => <Loading />,
 })
 
 const DynamicFeatured = dynamic(() => import("./_components/home/featured/Featured"), {
-  loading: () => <p>Loading...</p>,
+  loading: () => <Loading />,
 })
 
 const DynamicSources = dynamic(() => import("./_components/home/sources/Sources"), {
-  loading: () => <p>Loading...</p>,
+  loading: () => <Loading />,
 })
 
 const DynamicTopics = dynamic(() => import("./_components/home/topics/Topics"), {
-  loading: () => <p>Loading...</p>,
+  loading: () => <Loading />,
 })
 
 

@@ -18,9 +18,9 @@ export async function getReviews(userId) {
     return res.json();
 }
 
-export async function getAllReviews() {
+export async function getAllReviews(page, limit) {
     const res = await fetch(
-        `http://localhost:3000/api/reviews`, { next: { tags: ['allReviews'] } }
+        `http://localhost:3000/api/reviews?page=${page}&limit=${limit}`, { next: { tags: ['allReviews'] } }
     );
     if (!res.ok) {
         throw new Error(`Failed to fetch data. Status: ${res.status}`);
@@ -28,9 +28,19 @@ export async function getAllReviews() {
     return res.json();
 }
 
-export async function getAllUsers() {
+export async function getFilteredReviews(page, limit, keywords, createdAt) {
     const res = await fetch(
-        `http://localhost:3000/api/allusers`, { next: { tags: ['allUsers'] } }
+        `http://localhost:3000/api/filteredreviews?keywords=${keywords}&page=${page}&limit=${limit}&createdAt=${createdAt}`, { next: { tags: ['allReviews'] } }
+    );
+    if (!res.ok) {
+        throw new Error(`Failed to fetch data. Status: ${res.status}`);
+    }
+    return res.json();
+}
+
+export async function getAllUsers(page, limit) {
+    const res = await fetch(
+        `http://localhost:3000/api/allusers?page=${page}&limit=${limit}`, { next: { tags: ['allUsers'] } }
     );
     if (!res.ok) {
         throw new Error(`Failed to fetch data. Status: ${res.status}`);
@@ -47,7 +57,6 @@ export async function getTopic(topic) {
     }
     return res.json();
 }
-
 
 export async function getLength() {
     const res = await fetch(

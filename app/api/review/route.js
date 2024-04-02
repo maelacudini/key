@@ -38,7 +38,7 @@ export async function POST(req, res) {
         }
 
         //separate keywords by space
-        const separatedKeywords = sanitizedKeywords.split(' ').slice(0, 3)
+        const separatedKeywords = sanitizedKeywords.split(' ')
 
         //connect database
         await connectDB()
@@ -127,7 +127,6 @@ export async function DELETE(req, res) {
         await User.findByIdAndUpdate(userId, { $pull: { reviews: reviewId } })
 
         await Review.findByIdAndDelete(reviewId)
-
 
         return NextResponse.json({ message: 'Review deleted.' }, { status: 200 })
     } catch (error) {

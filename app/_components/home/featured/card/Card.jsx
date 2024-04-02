@@ -3,13 +3,12 @@ import style from "./card.module.scss";
 import Image from "next/image";
 
 export default async function Card({ review }) {
-  const author = await getUser(review?.user);
-
+  const date = new Date(review.createdAt).toDateString();
   return (
     <article className={style.card}>
       <div className={style.intro}>
         <div className={style.keywords}>
-          {review.keywords.map((keyword, index) => (
+          {review.keywords.slice(0, 3).map((keyword, index) => (
             <small className={style.key} key={index}>
               {keyword}
             </small>
@@ -19,24 +18,13 @@ export default async function Card({ review }) {
         <p>
           {review.description.length < 100
             ? review.description
-            : review.description.slice(0, 100) + "..."}
+            : review.description.slice(0, 200) + "..."}
         </p>
-        <p className={`h4 ${style.rating}`}>{review.rating}/10</p>
       </div>
 
       <div className={style.info}>
-        <p>SOURCED FROM</p>
-        <div className={style.user}>
-          <div>
-            <Image
-              src={author?.avatar}
-              alt="author avatar"
-              width={50}
-              height={50}
-            />
-            <p className={style.author}>{author?.username}</p>
-          </div>
-        </div>
+        <p>{date}</p>
+        <p className={style.rating}>RATING: {review.rating}</p>
       </div>
     </article>
   );

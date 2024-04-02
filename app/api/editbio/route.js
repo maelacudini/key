@@ -5,14 +5,14 @@ import { NextResponse } from "next/server";
 import { authOptions } from "../auth/[...nextauth]/route";
 import xss from "xss";
 
-//i am using server actions to edit the bio, this route is not being used 
+//currently using server actions to edit the bio, this route is not being used 
 
 //PRIVATE, EDIT USER BIO
 export async function PUT(req, res) {
     // const session = await getServerSession(authOptions)
     // if (!session) {
     //     return NextResponse.json({ message: 'Not authorized.' }, { status: 401 })
-    // }
+    // } 
 
     try {
         const { bio, userId } = await req.json()

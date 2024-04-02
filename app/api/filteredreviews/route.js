@@ -1,6 +1,5 @@
 import { connectDB } from "@/lib/mongodb";
 import Review from "@/models/review";
-import User from "@/models/user";
 import { NextResponse } from "next/server";
 
 //PUBLIC, get all reviews
@@ -8,22 +7,26 @@ export async function GET(req, res) {
     try {
         await connectDB()
         const url = new URL(req.url)
-        const page = url.searchParams.get('page') || 1
-        const limit = url.searchParams.get('limit') || 10
+        const page = parseInt(url.searchParams.get('page')) || 1;
+        const limit = parseInt(url.searchParams.get('limit')) || 10;
+        const keywords = url.searchParams.get('keywords')
+        const createdAt = parseInt(url.searchParams.get('createdAt')) || 1;
 
-        // Calculate skip value based on page and limit
-        const skip = (page - 1) * limit;
+        const keywordsSeparated = keywords ? keywords.split(',') : [];
 
-        // Query MongoDB for reviews with pagination
-        const reviews = await Review.find().skip(skip).limit(limit);
+        let filter = {};
+        if (keywordsSeparated.length !== 0) {
+            filter.keywords = { $all: keywordsSeparated };
+        }
 
-        // Get total count of reviews (for pagination metadata)
-        const totalCount = await Review.countDocuments();
+        const reviews = await Review.find(filter).skip((page - 1) * limit).limit(limit).sort({ createdAt: createdAt });
+
+        // This shows the total amount of reviews per specified keywords, if you don't add (filter) in countDocuments it shows the total amount of reviews in general
+        const totalCount = await Review.countDocuments(filter);
 
         // Calculate total pages
         const totalPages = Math.ceil(totalCount / limit);
 
-        // Prepare response object with reviews and pagination metadata
         const response = {
             reviews: reviews,
             pagination: {

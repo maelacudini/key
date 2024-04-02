@@ -43,7 +43,7 @@ export default function Nav({ setOpen, open }) {
           className={style.close}
         >
           <p>Close</p>
-          <Image alt="close" src="/close.svg" width={30} height={30} />
+          <Image alt="close" src="/close.svg" width={25} height={25} />
         </motion.div>
         {links.map((link, index) => (
           <motion.div

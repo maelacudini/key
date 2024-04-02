@@ -6,8 +6,9 @@ import { revalidatePath } from "next/cache";
 import xss from "xss";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import Review from "@/models/review";
+import { getAllReviews } from "./functions";
 
-//edit user avatar
+//edit user avatar, PRIVATE
 export async function handleEditAvatar(prevState, formData) {
     const session = await getServerSession(authOptions)
     if (!session) {
@@ -50,7 +51,7 @@ export async function handleEditAvatar(prevState, formData) {
     }
 }
 
-//edit user bio 
+//edit user bio, PRIVATE
 export async function handleEditBio(prevState, formData) {
     const session = await getServerSession(authOptions)
     if (!session) {
@@ -98,7 +99,7 @@ export async function handleEditBio(prevState, formData) {
     }
 }
 
-//delete review
+//delete review, PRIVATE
 export async function deleteReview(prevState, formData) {
     const session = await getServerSession(authOptions)
     if (!session) {
@@ -136,7 +137,7 @@ export async function deleteReview(prevState, formData) {
     }
 }
 
-//add review
+//add review, PRIVATE
 export async function addReview(prevState, formData) {
     const session = await getServerSession(authOptions)
     if (!session) {
@@ -173,7 +174,7 @@ export async function addReview(prevState, formData) {
         }
 
         //separate keywords by space
-        const separatedKeywords = sanitizedKeywords.split(',').slice(0, 3)
+        const separatedKeywords = sanitizedKeywords.toLowerCase().split(',')
 
         //connect database
         await connectDB()
@@ -206,5 +207,59 @@ export async function addReview(prevState, formData) {
         console.log('An error occurred while adding a review: ', error);
         return { message: 'An error occurred while adding a review.' }
     }
+}
 
+//filter reviews in Reviews page, PUBLIC
+export async function filterReviews(prevState, formData) {
+    await connectDB()
+
+    if (formData) {
+        const page = parseInt(formData.get("page") || 1)
+        const limit = parseInt(formData.get("limit") || 10);
+        const createdAt = parseInt(formData.get("createdAt")) || 1;
+        const keywords = formData.get("keywords");
+
+        // console.log(page);
+
+        try {
+            const keywordsSeparated = keywords ? keywords.toLowerCase().split(',') : [];
+
+            let filter = {};
+            if (keywordsSeparated.length !== 0) {
+                filter.keywords = { $all: keywordsSeparated };
+            }
+
+            const reviews = await Review.find(filter).skip((page - 1) * limit).limit(limit).sort({ createdAt: createdAt });
+
+            // This shows the total amount of reviews per specified keywords, if you don't add (filter) in countDocuments it shows the total amount of reviews in general
+            const totalCount = await Review.countDocuments(filter);
+
+            const totalPages = Math.ceil(totalCount / limit);
+
+            const response = {
+                reviews: JSON.parse(JSON.stringify(reviews)),
+                pagination: {
+                    currentPage: parseInt(page),
+                    totalPages: totalPages,
+                    totalReviews: totalCount
+                }
+            };
+
+            return response
+        } catch (error) {
+            console.log('An error occurred while fetching reviews: ', error);
+            return { message: 'An error occurred while fetching reviews.' }
+        }
+    } else {
+        const data = await getAllReviews(1, 10);
+        const response = {
+            reviews: data.reviews,
+            pagination: {
+                currentPage: parseInt(data.pagination.currentPage),
+                totalPages: data.pagination.totalPages,
+                totalReviews: data.pagination.totalReviews
+            }
+        }
+        return response
+    }
 }

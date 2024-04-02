@@ -3,7 +3,7 @@ import { getAllUsers } from "@/app/_utils/functions";
 import Swpr from "./swpr/Swpr";
 
 export default async function Sources() {
-  const users = await getAllUsers();
+  const { users, pagination } = await getAllUsers(1, 10);
 
   if (!users) {
     return (
