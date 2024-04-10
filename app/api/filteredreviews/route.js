@@ -12,27 +12,27 @@ export async function GET(req, res) {
         const keywords = url.searchParams.get('keywords')
         const createdAt = parseInt(url.searchParams.get('createdAt')) || 1;
 
-        const keywordsSeparated = keywords ? keywords.split(',') : [];
-
-        let filter = {};
-        if (keywordsSeparated.length !== 0) {
-            filter.keywords = { $all: keywordsSeparated };
+        let query = {};
+        if (keywords) {
+            const keywordsSeparated = keywords.split(' ');
+            const regexPatterns = keywordsSeparated.map(keyword => new RegExp(keyword, 'i'));
+            query = { title: { $all: regexPatterns } };
         }
 
-        const reviews = await Review.find(filter).skip((page - 1) * limit).limit(limit).sort({ createdAt: createdAt });
+        const reviews = await Review.find(query)
+            .skip((page - 1) * limit)
+            .limit(limit)
+            .sort({ createdAt: createdAt });
 
-        // This shows the total amount of reviews per specified keywords, if you don't add (filter) in countDocuments it shows the total amount of reviews in general
-        const totalCount = await Review.countDocuments(filter);
-
-        // Calculate total pages
-        const totalPages = Math.ceil(totalCount / limit);
+        const totalReviews = await Review.countDocuments(query);
+        const totalPages = Math.ceil(totalReviews / limit);
 
         const response = {
             reviews: reviews,
             pagination: {
                 currentPage: page,
                 totalPages: totalPages,
-                totalReviews: totalCount
+                totalReviews: totalReviews
             }
         };
 

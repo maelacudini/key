@@ -1,9 +1,9 @@
 "use client";
-import { useLoadingFeedback } from "@/context/context";
+import { useGeneralContext } from "@/context/context";
 import style from "./feedback.module.scss";
 
 export default function Feedback() {
-  const { feedback, setFeedback } = useLoadingFeedback();
+  const { feedback, setFeedback } = useGeneralContext();
 
   return (
     <>

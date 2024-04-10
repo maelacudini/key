@@ -38,7 +38,7 @@ export async function POST(req, res) {
         }
 
         //separate keywords by space
-        const separatedKeywords = sanitizedKeywords.split(' ')
+        const separatedKeywords = sanitizedKeywords.toLocaleLowerCase().split(' ')
 
         //connect database
         await connectDB()

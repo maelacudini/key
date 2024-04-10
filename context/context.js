@@ -1,25 +1,32 @@
 'use client'
+import { getAllReviews } from '@/app/_utils/functions';
 import { createContext, useContext, useEffect, useState } from 'react';
 
-const LoadingFeedbackContext = createContext();
+const GeneralContext = createContext();
 
-export const LoadingFeedbackProvider = ({ children }) => {
-    const [isLoading, setIsLoading] = useState(false);
-    const [feedback, setFeedback] = useState(null);
+export const GeneralContextProvider = ({ children }) => {
+    const [data, setData] = useState([])
+    const [feedback, setFeedback] = useState(null)
+    const [input, setInput] = useState({
+        // page: 1,
+        limit: 10,
+        createdAt: 1,
+        keywords: ''
+    })
 
     useEffect(() => {
-        const timeout = setTimeout(() => {
-            setFeedback(null);
-        }, 3000);
-
-        return () => clearTimeout(timeout);
-    }, [feedback]);
+        async function fetchReviews() {
+            const res = await getAllReviews(1, 10);
+            setData(res);
+        }
+        fetchReviews();
+    }, []);
 
     return (
-        <LoadingFeedbackContext.Provider value={{ isLoading, setIsLoading, feedback, setFeedback }}>
+        <GeneralContext.Provider value={{ feedback, setFeedback, input, setInput, data, setData }}>
             {children}
-        </LoadingFeedbackContext.Provider>
+        </GeneralContext.Provider>
     );
 };
 
-export const useLoadingFeedback = () => useContext(LoadingFeedbackContext);
+export const useGeneralContext = () => useContext(GeneralContext);

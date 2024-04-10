@@ -219,29 +219,20 @@ export async function filterReviews(prevState, formData) {
         const createdAt = parseInt(formData.get("createdAt")) || 1;
         const keywords = formData.get("keywords");
 
-        // console.log(page);
-
         try {
-            const keywordsSeparated = keywords ? keywords.toLowerCase().split(',') : [];
+            const keywordsSeparated = keywords ? keywords.split(' ') : [];
+            const regexPatterns = keywordsSeparated.map(keyword => new RegExp(keyword, 'i'));
 
-            let filter = {};
-            if (keywordsSeparated.length !== 0) {
-                filter.keywords = { $all: keywordsSeparated };
-            }
+            const reviews = await Review.find({ title: { $all: regexPatterns } }).skip((page - 1) * limit).limit(limit).sort({ createdAt: createdAt });
 
-            const reviews = await Review.find(filter).skip((page - 1) * limit).limit(limit).sort({ createdAt: createdAt });
-
-            // This shows the total amount of reviews per specified keywords, if you don't add (filter) in countDocuments it shows the total amount of reviews in general
-            const totalCount = await Review.countDocuments(filter);
-
-            const totalPages = Math.ceil(totalCount / limit);
+            const totalPages = Math.ceil(reviews.length / limit);
 
             const response = {
                 reviews: JSON.parse(JSON.stringify(reviews)),
                 pagination: {
                     currentPage: parseInt(page),
                     totalPages: totalPages,
-                    totalReviews: totalCount
+                    totalReviews: reviews.length
                 }
             };
 

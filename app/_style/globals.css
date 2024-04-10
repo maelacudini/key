@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Raleway:wght@100;200;300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap");
 
 ::-webkit-scrollbar {
   display: none;
@@ -70,7 +70,8 @@ small {
 }
 
 .italic {
-  font-family: "Merriweather", serif;
+  font-family: "Lora", serif;
+  font-weight: inherit;
 }
 
 .link:hover {
@@ -145,6 +146,12 @@ small {
   transition: 0.3s;
 }
 
+.b-yellow:disabled,
+.b-full:disabled,
+.b-out:disabled {
+  opacity: 0.5;
+}
+
 .card {
   border: 1px solid #00000050;
   border-radius: 1rem;
@@ -164,6 +171,11 @@ option {
   font-size: clamp(1rem, 0.875rem + 0.4vw, 1.125rem);
   font-family: inherit;
   background-color: white;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #00000050;
 }
 
 input:focus,

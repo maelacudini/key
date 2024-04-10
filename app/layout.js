@@ -1,10 +1,10 @@
-import { Inter } from 'next/font/google'
 import './_style/globals.css'
+import { Inter } from 'next/font/google'
 import { AuthProvider } from './Providers'
 import Footer from './_components/common/footer/Footer'
 import Header from './_components/common/header/Header'
-import { LoadingFeedbackProvider } from '@/context/context'
 import Feedback from './_components/common/feedback/Feedback'
+import { GeneralContextProvider } from '@/context/context'
 
 //font
 const font = Inter({ subsets: ['latin'] })
@@ -100,12 +100,12 @@ export default async function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <AuthProvider>
-          <Header />
-          <LoadingFeedbackProvider>
-            <Feedback />
+          <GeneralContextProvider>
+            <Header />
             {children}
-          </LoadingFeedbackProvider>
-          <Footer />
+            <Feedback />
+            <Footer />
+          </GeneralContextProvider>
         </AuthProvider>
       </body>
     </html>

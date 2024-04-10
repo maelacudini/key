@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { slidein } from "@/app/_utils/animations";
 import { topics } from "../../home/topics/data";
 import Button from "../../common/button/Button";
-import { useLoadingFeedback } from "@/context/context";
 import { useFormState } from "react-dom";
 import { addReview } from "@/app/_utils/serverActions";
 
@@ -14,8 +13,6 @@ const initialState = {
 };
 
 export default function Addreview({ userId }) {
-  const { isLoading, setIsLoading, feedback, setFeedback } =
-    useLoadingFeedback();
   const [openForm, setOpenForm] = useState(false);
   const [openChecks, setOpenChecks] = useState(false);
   const [keywords, setKeywords] = useState([]);

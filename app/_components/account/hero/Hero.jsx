@@ -3,7 +3,7 @@ import Image from "next/image";
 import style from "./hero.module.scss";
 import noavatar from "../../../../public/noavatar.png";
 import { useEffect, useState } from "react";
-import { useLoadingFeedback } from "@/context/context";
+import { useGeneralContext } from "@/context/context";
 import { handleEditAvatar, handleEditBio } from "@/app/_utils/serverActions";
 import { useFormState } from "react-dom";
 import Button from "../../common/button/Button";
@@ -13,8 +13,7 @@ const initialState = {
 };
 
 export default function Hero({ user }) {
-  const { isLoading, setIsLoading, feedback, setFeedback } =
-    useLoadingFeedback();
+  const { feedback, setFeedback } = useGeneralContext();
   const [openAvatar, setOpenAvatar] = useState(false);
   const [openBio, setOpenBio] = useState(false);
   const [stateAvatar, formActionAvatar] = useFormState(

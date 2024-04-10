@@ -2,33 +2,37 @@
   max-width: 90rem;
   width: 100%;
   margin: 2rem auto;
-  display: flex;
+  display: grid;
+  grid-template-columns: 100%;
   justify-content: space-between;
   align-items: flex-end;
   flex-wrap: wrap;
   gap: 1rem;
 
-  .cont {
+  .input {
     display: flex;
-    align-items: flex-end;
-    flex-wrap: wrap;
-    gap: 1rem;
+    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
 
-    .input {
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.5rem;
-
-      &:nth-of-type(1) {
-        width: 20rem;
-      }
-
-      input,
-      select {
-        width: 100%;
-      }
+    input,
+    select {
+      width: 100% !important;
     }
+
+    label {
+      margin-left: 1rem;
+    }
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+@media (min-width: 600px) {
+  .form {
+    grid-template-columns: 40% 40% 15%;
   }
 }
