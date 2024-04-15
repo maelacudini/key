@@ -57,9 +57,9 @@ export default function Content({ data, topic }) {
 
   return (
     <section className={style.content}>
-      <h2>
+      <p className="h2">
         Reviews for <span className="italic">{actualTopic}</span>
-      </h2>
+      </p>
       <div className={style.topic}>
         <p>Switch topic</p>
         <select
@@ -74,13 +74,19 @@ export default function Content({ data, topic }) {
           ))}
         </select>
       </div>
-      <div className={style.reviews}>
-        {reviews?.length !== 0 ? (
-          reviews?.map((review) => <Review key={review?._id} review={review} />)
-        ) : (
-          <p>No reviews!</p>
-        )}
-      </div>
+      {reviews?.length !== 0 ? (
+        reviews?.map((review) => (
+          <div className={style.reviews}>
+            <Review key={review?._id} review={review} />{" "}
+          </div>
+        ))
+      ) : (
+        <div className="card">
+          <p>
+            No reviews for <span className="italic">{actualTopic}</span>!
+          </p>
+        </div>
+      )}
     </section>
   );
 }

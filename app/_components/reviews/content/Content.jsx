@@ -15,8 +15,8 @@ export default function Content() {
     return <Loading />;
   } else if (reviews?.length === 0) {
     return (
-      <div className={style.noreviews}>
-        <p>No reviews found!</p>
+      <div className={`card ${style.noreviews}`}>
+        <p className="italic">No reviews found!</p>
       </div>
     );
   }
