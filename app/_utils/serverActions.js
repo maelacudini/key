@@ -213,46 +213,34 @@ export async function addReview(prevState, formData) {
 export async function filterReviews(prevState, formData) {
     await connectDB()
 
-    if (formData) {
-        const page = parseInt(formData.get("page") || 1)
-        const limit = parseInt(formData.get("limit") || 10);
-        const createdAt = parseInt(formData.get("createdAt")) || 1;
-        const keywords = formData.get("keywords");
+    const page = parseInt(formData.get("page") || 1)
+    const limit = parseInt(formData.get("limit") || 10);
+    const createdAt = parseInt(formData.get("createdAt")) || 1;
+    const keywords = formData.get("keywords");
 
-        try {
-            const keywordsSeparated = keywords ? keywords.split(' ') : [];
-            const regexPatterns = keywordsSeparated.map(keyword => new RegExp(keyword, 'i'));
+    try {
+        const keywordsSeparated = keywords ? keywords.split(' ') : [];
+        const regexPatterns = keywordsSeparated.map(keyword => new RegExp(keyword, 'i'));
 
-            const reviews = await Review.find({ title: { $all: regexPatterns } }).skip((page - 1) * limit).limit(limit).sort({ createdAt: createdAt });
+        const reviews = await Review.find({ title: { $all: regexPatterns } }).skip((page - 1) * limit).limit(limit).sort({ createdAt: createdAt });
 
-            const totalPages = Math.ceil(reviews.length / limit);
+        const totalPages = Math.ceil(reviews.length / limit);
 
-            const response = {
-                reviews: JSON.parse(JSON.stringify(reviews)),
-                pagination: {
-                    currentPage: parseInt(page),
-                    totalPages: totalPages,
-                    totalReviews: reviews.length
-                }
-            };
-
-            return response
-        } catch (error) {
-            console.log('An error occurred while fetching reviews: ', error);
-            return { message: 'An error occurred while fetching reviews.' }
-        }
-    } else {
-        const data = await getAllReviews(1, 10);
         const response = {
-            reviews: data.reviews,
+            reviews: JSON.parse(JSON.stringify(reviews)),
             pagination: {
-                currentPage: parseInt(data.pagination.currentPage),
-                totalPages: data.pagination.totalPages,
-                totalReviews: data.pagination.totalReviews
+                currentPage: parseInt(page),
+                totalPages: totalPages,
+                totalReviews: reviews.length
             }
-        }
+        };
+
         return response
+    } catch (error) {
+        console.log('An error occurred while fetching reviews: ', error);
+        return { message: 'An error occurred while fetching reviews.' }
     }
+
 }
 
 //PRIVATE, DELETE USER 
