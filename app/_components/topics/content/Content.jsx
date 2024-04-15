@@ -74,19 +74,17 @@ export default function Content({ data, topic }) {
           ))}
         </select>
       </div>
-      {reviews?.length !== 0 ? (
-        reviews?.map((review) => (
-          <div className={style.reviews}>
-            <Review key={review?._id} review={review} />{" "}
+      <div className={style.reviews}>
+        {reviews?.length !== 0 ? (
+          reviews?.map((review) => <Review key={review?._id} review={review} />)
+        ) : (
+          <div className="card">
+            <p>
+              No reviews for <span className="italic">{actualTopic}</span>!
+            </p>
           </div>
-        ))
-      ) : (
-        <div className="card">
-          <p>
-            No reviews for <span className="italic">{actualTopic}</span>!
-          </p>
-        </div>
-      )}
+        )}
+      </div>
     </section>
   );
 }
