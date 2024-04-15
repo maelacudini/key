@@ -4,11 +4,11 @@ import style from "./login.module.scss";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useGeneralContext } from "@/context/context";
 
 export default function Login() {
   const router = useRouter();
-  const [feedback, setFeedback] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const { feedback, setFeedback, loading, setLoading } = useGeneralContext();
   const [input, setInput] = useState({
     email: "",
     password: "",
@@ -30,9 +30,6 @@ export default function Login() {
       if (!res.ok) {
         setFeedback("Please enter valid credentials.");
         setLoading(false);
-        setTimeout(() => {
-          setFeedback(null);
-        }, 3000);
         return;
       }
 
@@ -72,9 +69,12 @@ export default function Login() {
         <button type="submit" className="b-full" disabled={loading}>
           {loading ? "Loading..." : "Submit"}
         </button>
-        <small>
-          Don't have an account? <Link href="/signup">Signup</Link>
-        </small>
+        <div className={style.end}>
+          <p className="gray">Don't have an account? </p>
+          <Link className="link" href="/signup">
+            Signup
+          </Link>
+        </div>
       </form>
     </main>
   );

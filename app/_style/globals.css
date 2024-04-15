@@ -1,13 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap");
 
+/*scrollbar*/
 ::-webkit-scrollbar {
-  display: none;
+  width: 0.25rem;
 }
 
+::-webkit-scrollbar-track {
+  background: #1c1c1c15;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1c1c1c25;
+}
+
+/*general*/
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  cursor: default;
 }
 
 body {
@@ -88,8 +99,8 @@ small {
   padding: 1rem 2rem;
   color: black;
   background-color: #f1feab;
-  border: 1px solid #00000050;
-  border-radius: 2.5rem;
+  border: 1px solid #00000025;
+  border-radius: 2rem;
   transition: 0.3s;
   white-space: nowrap;
   text-transform: uppercase;
@@ -108,10 +119,10 @@ small {
   align-items: center;
   justify-content: center;
   padding: 1rem 2rem;
-  border: 1px solid #00000050;
+  border: 1px solid #00000025;
   color: black;
   background-color: white;
-  border-radius: 2.5rem;
+  border-radius: 2rem;
   transition: 0.3s;
   white-space: nowrap;
   text-transform: uppercase;
@@ -131,9 +142,9 @@ small {
   justify-content: center;
   padding: 1rem 2rem;
   background-color: black;
-  border: 1px solid #00000050;
+  border: 1px solid #00000025;
   color: white;
-  border-radius: 2.5rem;
+  border-radius: 2rem;
   transition: 0.3s;
   white-space: nowrap;
   text-transform: uppercase;
@@ -141,9 +152,13 @@ small {
 
 .b-full:hover {
   background-color: #f1feab;
-  border: 1px solid #00000050;
+  border: 1px solid #00000025;
   color: black;
   transition: 0.3s;
+}
+
+button:hover > img {
+  filter: invert(1);
 }
 
 .b-yellow:disabled,
@@ -153,7 +168,7 @@ small {
 }
 
 .card {
-  border: 1px solid #00000050;
+  border: 1px solid #00000025;
   border-radius: 1rem;
   padding: 2rem;
 }
@@ -164,13 +179,26 @@ textarea,
 select,
 option {
   border: 1px solid #00000025;
-  border-radius: 2.5rem;
+  border-radius: 2rem;
   padding: 1rem 2rem;
   background-color: transparent;
   transition: all 0.3s;
   font-size: clamp(1rem, 0.875rem + 0.4vw, 1.125rem);
   font-family: inherit;
   background-color: white;
+}
+
+label {
+  color: #00000050;
+  margin-left: 1rem;
+}
+
+select {
+  appearance: none;
+  background-image: url("/arrow.svg");
+  background-repeat: no-repeat;
+  background-position: right 2rem top 50%;
+  background-size: 1.5rem auto;
 }
 
 input::placeholder,
@@ -186,19 +214,11 @@ option:focus {
   background-color: rgb(235, 235, 235);
 }
 
-select {
-  appearance: none;
-  background-image: url("/arrow.svg");
-  background-repeat: no-repeat;
-  background-position: right 2rem top 50%;
-  background-size: 1.5rem auto;
-}
-
 /*general loading, not found, error*/
 .loading,
 .notfound,
 .error {
-  height: calc(100lvh - 6rem);
+  height: 50lvh;
   width: 100%;
   display: flex;
   justify-content: center;

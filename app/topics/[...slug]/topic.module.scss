@@ -1,5 +1,12 @@
-.notopic {
+.notopic,
+.topics {
   max-width: 90rem;
   width: 100%;
-  margin: 10rem auto;
+  margin: 5rem auto;
+}
+
+.topics {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }

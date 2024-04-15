@@ -107,9 +107,12 @@ export default function Signup() {
         <button type="submit" className="b-full">
           Submit
         </button>
-        <small>
-          Already have an account? <Link href="/login">Login</Link>
-        </small>
+        <div className={style.end}>
+          <p className="gray">Already have an account? </p>
+          <Link className="link" href="/login">
+            Login
+          </Link>
+        </div>
       </form>
     </main>
   );

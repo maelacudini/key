@@ -1,22 +1,15 @@
+"use client";
 import { getFilteredReviews } from "@/app/_utils/functions";
 import Button from "../../common/button/Button";
 import style from "./filter.module.scss";
 import { useGeneralContext } from "@/context/context";
 
-export default function Filter({ formAction }) {
-  const {
-    feedback,
-    setFeedback,
-    input,
-    setInput,
-    data,
-    setData,
-    handleFilter,
-  } = useGeneralContext();
+export default function Filter() {
+  const { input, setInput, setData, setLoading } = useGeneralContext();
 
   async function handleSubmit(e) {
+    setLoading(true);
     e.preventDefault();
-    // setInput({ ...input, page: 1 });
     let page = 1;
     const res = await getFilteredReviews(
       page,
@@ -24,15 +17,14 @@ export default function Filter({ formAction }) {
       input?.keywords,
       input?.createdAt
     );
+    setLoading(false);
     setData(res);
   }
 
   return (
     <form onSubmit={handleSubmit} className={style.form}>
       <div className={style.input}>
-        <label htmlFor="createdAt" className="gray">
-          Order
-        </label>
+        <label htmlFor="createdAt">Order</label>
         <select
           name="createdAt"
           id="createdAt"
@@ -44,9 +36,7 @@ export default function Filter({ formAction }) {
         </select>
       </div>
       <div className={style.input}>
-        <label htmlFor="keywords" className="gray">
-          Keywords
-        </label>
+        <label htmlFor="keywords">Keywords</label>
         <input
           type="text"
           name="keywords"
@@ -55,7 +45,7 @@ export default function Filter({ formAction }) {
           onChange={(e) => setInput({ ...input, keywords: e.target.value })}
         />
       </div>
-      <Button message={"send"} />
+      <Button message={"search"} />
     </form>
   );
 }

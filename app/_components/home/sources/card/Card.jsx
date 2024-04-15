@@ -13,6 +13,8 @@ export default function Card({ user }) {
           src={user?.avatar ? user?.avatar : "/noavatar.png"}
           height={100}
           width={100}
+          loading="lazy"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw"
         />
         <span>{user.reviews.length} reviews</span>
         <p className="h4">{user.username}</p>
@@ -26,13 +28,25 @@ export default function Card({ user }) {
           <a className="white" href="/">
             Instagram
           </a>
-          <Image alt="arrow" src="/arrow.svg" height={20} width={20} />
+          <Image
+            alt="arrow"
+            src="/arrow.svg"
+            height={20}
+            width={20}
+            loading="lazy"
+          />
         </div>
         <div className={style.social}>
           <a className="white" href="/">
             Twitter
           </a>
-          <Image alt="arrow" src="/arrow.svg" height={20} width={20} />
+          <Image
+            alt="arrow"
+            src="/arrow.svg"
+            height={20}
+            width={20}
+            loading="lazy"
+          />
         </div>
       </div>
     </div>

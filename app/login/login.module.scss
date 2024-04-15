@@ -3,7 +3,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-sizing: border-box;
 
   .form {
     padding: 5lvw;
@@ -14,12 +13,16 @@
     justify-content: center;
     align-items: center;
     gap: 2rem;
-    box-sizing: border-box;
 
     .cont {
       display: flex;
       align-items: flex-start;
       flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .end {
+      display: flex;
       gap: 0.5rem;
     }
   }

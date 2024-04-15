@@ -1,5 +1,5 @@
 .hero {
-  margin: 2rem auto;
+  margin: 5rem auto;
   width: 100%;
   max-width: 90rem;
   display: flex;
@@ -17,7 +17,6 @@
 
     .avatar,
     .noavatar {
-      object-fit: cover;
       object-position: center;
       border-radius: 1rem;
       position: relative;
@@ -36,16 +35,9 @@
       z-index: 80;
     }
 
-    .username {
-      position: absolute;
-      top: 2rem;
-      left: 2rem;
-      z-index: 81;
-    }
-
+    .username,
     .button {
       position: absolute;
-      bottom: 2rem;
       left: 2rem;
       z-index: 81;
     }
@@ -53,6 +45,7 @@
     .openAvatar {
       position: relative;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: center;
       gap: 1rem;
@@ -61,15 +54,16 @@
   }
 
   .info {
-    display: flex;
+    display: grid;
     flex-direction: column;
     align-items: flex-end;
+    grid-template-columns: 30% 70%;
+    flex-wrap: wrap;
 
     .col {
       display: flex;
       flex-direction: column;
-      gap: 2rem;
-      width: 70%;
+      gap: 1rem;
 
       .openBio {
         display: flex;
@@ -82,15 +76,5 @@
         }
       }
     }
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .col {
-    width: 100% !important;
-  }
-
-  .openAvatar {
-    flex-direction: column;
   }
 }

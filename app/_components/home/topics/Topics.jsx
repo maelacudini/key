@@ -1,8 +1,8 @@
 "use client";
-import { topics } from "./data";
 import { motion } from "framer-motion";
 import style from "./topic.module.scss";
 import { slidein } from "@/app/_utils/animations";
+import { topics } from "@/app/_utils/data";
 
 export default function Topics() {
   return (

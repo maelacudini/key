@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import style from "./addreview.module.scss";
 import { motion } from "framer-motion";
 import { slidein } from "@/app/_utils/animations";
-import { topics } from "../../home/topics/data";
 import Button from "../../common/button/Button";
 import { useFormState } from "react-dom";
 import { addReview } from "@/app/_utils/serverActions";
+import { topics } from "@/app/_utils/data";
 
 const initialState = {
   message: "",
@@ -87,9 +87,9 @@ export default function Addreview({ userId }) {
             <textarea
               name="description"
               id="description"
-              cols="30"
               rows="10"
-              placeholder="Describe your experience with this book: every thought and emotion counts"
+              cols="30"
+              placeholder="Describe your experience with this book, every thought and emotion counts"
               required
             />
           </div>
@@ -116,38 +116,28 @@ export default function Addreview({ userId }) {
                 required
               />
             </div>
-            <div className={style.cont}>
-              <label htmlFor="keywords">Keywords</label>
-              <input type="hidden" name="userId" value={userId} />
-              <input type="hidden" name="keywords" value={keywords} />
-              <p className="b-out" onClick={() => setOpenChecks(!openChecks)}>
-                Select 3 keywords
-              </p>
-              {openChecks && (
-                <div className={style.checks}>
-                  <div
-                    className={style.overlay}
-                    onClick={() => setOpenChecks(!openChecks)}
+          </div>
+          <div className={style.cont}>
+            <label htmlFor="keywords">Select 3 keywords</label>
+            <input type="hidden" name="keywords" value={keywords} />
+            <div className={`card ${style.keywords}`}>
+              {topics.map((topic, i) => (
+                <div key={i} className={style.topic}>
+                  <input
+                    onChange={() => handleCheckboxClick(topic)}
+                    value={topic}
+                    checked={keywords.includes(topic)}
+                    type="checkbox"
                   />
-                  <div className={`card ${style.card}`}>
-                    {topics.map((topic, i) => (
-                      <label key={topic + i} id={topic}>
-                        {topic}
-                        <input
-                          onChange={() => handleCheckboxClick(topic)}
-                          value={topic}
-                          checked={keywords.includes(topic)}
-                          type="checkbox"
-                        />
-                        <span className="checkmark" />
-                      </label>
-                    ))}
-                  </div>
+                  <label className="black" key={topic + i} id={topic}>
+                    {topic}
+                  </label>
                 </div>
-              )}
+              ))}
             </div>
           </div>
           <div className={style.buttons}>
+            <input type="hidden" name="userId" value={userId} />
             <Button message={"send"} />
             <button className="b-out" type="reset">
               Reset form

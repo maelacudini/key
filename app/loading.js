@@ -1,7 +1,7 @@
 export default function Loading() {
     return (
-        <div className='loading'>
+        <section className='loading'>
             <p>Loading...</p>
-        </div>
+        </section>
     )
 }

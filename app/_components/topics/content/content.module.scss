@@ -1,0 +1,17 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  .topic {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .reviews {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}

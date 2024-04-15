@@ -48,9 +48,10 @@ export async function getAllUsers(page, limit) {
     return res.json();
 }
 
-export async function getTopic(topic) {
+export async function getTopic(topic, page, limit) {
     const res = await fetch(
-        `http://localhost:3000/api/topic?topic=${topic}`,
+
+        `http://localhost:3000/api/topics?topic=${topic}&page=${page}&limit=${limit}`,
     );
     if (!res.ok) {
         throw new Error(`Failed to fetch data. Status: ${res.status}`);

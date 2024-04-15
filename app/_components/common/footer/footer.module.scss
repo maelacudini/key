@@ -4,18 +4,18 @@
   margin: 0 auto;
 
   .row {
-    display: flex;
-    gap: 5%;
+    display: grid;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 2rem;
 
     .col:nth-of-type(1) {
-      flex-basis: 70%;
       display: flex;
       flex-direction: column;
       gap: 1rem;
     }
 
     .col:nth-of-type(2) {
-      flex-basis: 25%;
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
@@ -32,7 +32,6 @@
     display: flex;
     flex-direction: row;
     gap: 2rem;
-    margin: 2rem 0rem;
 
     .card {
       display: flex;
@@ -45,9 +44,8 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (min-width: 600px) {
   .row {
-    flex-direction: column !important;
-    gap: 2rem !important;
+    grid-template-columns: 70% 25%;
   }
 }

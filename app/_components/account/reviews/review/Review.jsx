@@ -18,7 +18,6 @@ export default function Review({ review, index, userId }) {
 
   return (
     <motion.div
-      className={style.cont}
       variants={slidein}
       animate="enter"
       initial="initial"
@@ -28,9 +27,10 @@ export default function Review({ review, index, userId }) {
       onClick={() => {
         setOpen(!open);
       }}
+      className={style.review}
     >
-      <div className={style.review}>
-        <h4>{review.title}</h4>
+      <div className={style.intro}>
+        <p className="h4">{review.title}</p>
         <motion.img
           alt="arrow"
           src="/arrow.svg"
@@ -44,20 +44,21 @@ export default function Review({ review, index, userId }) {
 
       <AnimatePresence mode="wait">
         {open && (
-          <motion.form
+          <div
             variants={slidein}
             whileInView="enter"
             initial="initial"
             exit="exit"
             custom={index + 1}
-            className={style.description}
-            action={formAction}
+            className={style.details}
           >
             <p className="italic">{review.description}</p>
-            <input type="hidden" name="reviewId" value={reviewId} />
-            <input type="hidden" name="userId" value={userId} />
-            <Button message={"Delete review"} />
-          </motion.form>
+            <form action={formAction}>
+              <input type="hidden" name="reviewId" value={reviewId} />
+              <input type="hidden" name="userId" value={userId} />
+              <Button message={"Delete review"} />
+            </form>
+          </div>
         )}
       </AnimatePresence>
     </motion.div>

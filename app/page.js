@@ -18,7 +18,6 @@ const DynamicTopics = dynamic(() => import("./_components/home/topics/Topics"), 
   loading: () => <Loading />,
 })
 
-
 export default function Home() {
   return (
     <main>

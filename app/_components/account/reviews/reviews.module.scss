@@ -2,8 +2,13 @@
   margin: 5rem auto;
   width: 100%;
   max-width: 90rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 
-  .noreviews {
-    padding: 2rem;
+  .reviewlist {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 }

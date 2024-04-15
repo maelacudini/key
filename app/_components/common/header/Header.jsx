@@ -1,15 +1,14 @@
 "use client";
 import Nav from "./nav/Nav";
 import Image from "next/image";
+import Link from "next/link";
 import style from "./header.module.scss";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { AnimatePresence } from "framer-motion";
 import { overlay } from "@/app/_utils/animations";
-import { useRouter } from "next/navigation";
 
 export default function Header() {
-  const router = useRouter();
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -26,16 +25,9 @@ export default function Header() {
     <>
       <header className={style.header}>
         <div className={style.main}>
-          <Image
-            src="/key.svg"
-            alt="logo"
-            width={50}
-            height={50}
-            priority
-            onClick={() => {
-              router.push("/");
-            }}
-          />
+          <Link href="/" className="h4">
+            <b>Key</b>
+          </Link>
 
           <button
             onClick={() => {

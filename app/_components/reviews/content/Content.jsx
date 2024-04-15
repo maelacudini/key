@@ -1,15 +1,19 @@
+"use client";
 import style from "./content.module.scss";
 import { useGeneralContext } from "@/context/context";
-import Button from "../../common/button/Button";
 import { getFilteredReviews } from "@/app/_utils/functions";
+import Loading from "@/app/loading";
+import Image from "next/image";
+import Review from "../../common/review/Review";
 
-export default function Content({ formAction }) {
-  const { feedback, setFeedback, data, setData, input, setInput } =
-    useGeneralContext();
+export default function Content() {
+  const { data, setData, input, loading, setLoading } = useGeneralContext();
   const reviews = data?.reviews;
   const pagination = data?.pagination;
 
-  if (reviews?.length === 0) {
+  if (loading) {
+    return <Loading />;
+  } else if (reviews?.length === 0) {
     return (
       <div className={style.noreviews}>
         <p>No reviews found!</p>
@@ -18,34 +22,34 @@ export default function Content({ formAction }) {
   }
 
   async function handleNextPage() {
-    // setInput({ ...input, page: pagination?.currentPage + 1 });
+    setLoading(true);
     const res = await getFilteredReviews(
       pagination?.currentPage + 1,
       input?.limit,
       input?.keywords,
       input?.createdAt
     );
+    setLoading(false);
     setData(res);
   }
 
   async function handlePrevPage() {
-    // setInput({ ...input, page: pagination?.currentPage - 1 });
+    setLoading(true);
     const res = await getFilteredReviews(
       pagination?.currentPage - 1,
       input?.limit,
       input?.keywords,
       input?.createdAt
     );
+    setLoading(false);
     setData(res);
   }
 
   return (
     <section className={style.content}>
       <div className={style.reviews}>
-        {reviews?.map((review, i) => (
-          <p key={i}>
-            {review.title} / {review?.createdAt}
-          </p>
+        {reviews?.map((review) => (
+          <Review key={review?._id} review={review} />
         ))}
       </div>
       <div className={style.pagination}>
@@ -54,7 +58,7 @@ export default function Content({ formAction }) {
           disabled={pagination?.currentPage > 1 ? false : true}
           onClick={handlePrevPage}
         >
-          prev
+          <Image alt="prev" src={"/arrow.svg"} width={25} height={25} />
         </button>
         <p>
           {pagination?.currentPage} / {pagination?.totalPages}
@@ -66,7 +70,7 @@ export default function Content({ formAction }) {
           }
           onClick={handleNextPage}
         >
-          next
+          <Image alt="prev" src={"/arrow.svg"} width={25} height={25} />
         </button>
       </div>
     </section>

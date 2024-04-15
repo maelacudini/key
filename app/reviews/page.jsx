@@ -1,9 +1,11 @@
-import Container from "../_components/reviews/container/Container";
+import Content from "../_components/reviews/content/Content";
+import Filter from "../_components/reviews/filter/Filter";
 
 export default function Reviews() {
   return (
     <main>
-      <Container />
+      <Filter />
+      <Content />
     </main>
   );
 }

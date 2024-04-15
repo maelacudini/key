@@ -1,5 +1,5 @@
+import { cards, socials } from "@/app/_utils/data";
 import style from "./footer.module.scss";
-import { cards, socials } from "./data";
 import { getLength } from "@/app/_utils/functions";
 
 export default async function Footer() {
@@ -42,12 +42,6 @@ export default async function Footer() {
             </p>
           </div>
         ))}
-      </div>
-
-      <div className={style.bottom}>
-        <p className="gray">
-          Key 2024 - Do not share personal info - Site by Maela Cudini
-        </p>
       </div>
     </footer>
   );

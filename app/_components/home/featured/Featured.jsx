@@ -13,7 +13,7 @@ export default async function Featured() {
   }
 
   return (
-    <section id="featured" className={style.featured}>
+    <section id="featured" className={`card ${style.featured}`}>
       <h2>Featured Reviews</h2>
       <Link href="/reviews" className="b-full">
         View All Reviews

@@ -1,13 +1,12 @@
 import style from "./topic.module.scss";
 import { getTopic } from "@/app/_utils/functions";
+import Content from "@/app/_components/topics/content/Content";
 
 export default async function Topic({ params }) {
   const topic = params.slug[0];
+  const data = await getTopic(topic, 1, 10);
 
-  const response = await getTopic(topic);
-  const reviews = response.reviews;
-
-  if (!reviews) {
+  if (!data?.reviews) {
     return (
       <div className={style.notopic}>
         <h1>No reviews for this topic.</h1>
@@ -16,10 +15,8 @@ export default async function Topic({ params }) {
   }
 
   return (
-    <main>
-      {reviews.map((review, index) => (
-        <p key={index}>{review.title}</p>
-      ))}
+    <main className={style.topics}>
+      <Content data={data} topic={topic} />
     </main>
   );
 }
