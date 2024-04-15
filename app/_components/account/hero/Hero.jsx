@@ -31,7 +31,6 @@ export default function Hero({ user }) {
           fill
           loading="eager"
           priority
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           style={{ objectFit: user?.avatar ? "cover" : "contain" }}
         />
 
@@ -93,11 +92,13 @@ export default function Hero({ user }) {
               <Button message={"Send"} />
             </form>
           ) : (
-            <p>{user?.bio}</p>
+            <p>{user?.bio ? user?.bio : "No bio yet!"}</p>
           )}
-          <button className="b-full" onClick={() => setOpenBio(!openBio)}>
-            {openBio ? "close" : "edit bio"}
-          </button>
+          <div className={style.openbiobutton}>
+            <button className="b-full" onClick={() => setOpenBio(!openBio)}>
+              {openBio ? "close" : "edit bio"}
+            </button>
+          </div>
         </div>
       </div>
     </section>

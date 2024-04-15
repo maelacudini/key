@@ -15,6 +15,7 @@ export default function Review({ review, index, userId }) {
   const [open, setOpen] = useState(false);
   const [state, formAction] = useFormState(deleteReview, initialState);
   const reviewId = review?._id;
+  const date = new Date(review?.createdAt).toDateString();
 
   return (
     <motion.div
@@ -52,7 +53,19 @@ export default function Review({ review, index, userId }) {
             custom={index + 1}
             className={style.details}
           >
-            <p className="italic">{review.description}</p>
+            <p className="italic">{review?.description}</p>
+            <div>
+              <p className="gray">Book author</p>
+              <p className="gray">{review?.author}</p>
+            </div>
+            <div>
+              <p className="gray">Creation date</p>
+              <p className="gray">{date}</p>
+            </div>
+            <div>
+              <p className="gray">Rating</p>
+              <p className="gray">{review?.rating} / 10</p>
+            </div>
             <form action={formAction}>
               <input type="hidden" name="reviewId" value={reviewId} />
               <input type="hidden" name="userId" value={userId} />

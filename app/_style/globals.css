@@ -1,5 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap");
 
+/* custom highlighted text */
+::selection {
+  color: #f1feab;
+  background-color: #000000;
+}
+
+::-moz-selection {
+  color: #f1feab;
+  background-color: #000000;
+}
+
+::webkit-selection {
+  color: #f1feab;
+  background-color: #000000;
+}
+
 /*scrollbar*/
 ::-webkit-scrollbar {
   width: 0.25rem;

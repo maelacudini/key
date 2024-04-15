@@ -7,6 +7,7 @@ import xss from "xss";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import Review from "@/models/review";
 import { getAllReviews } from "./functions";
+import { compare } from "bcryptjs";
 
 //edit user avatar, PRIVATE
 export async function handleEditAvatar(prevState, formData) {
@@ -252,5 +253,42 @@ export async function filterReviews(prevState, formData) {
             }
         }
         return response
+    }
+}
+
+//PRIVATE, DELETE USER 
+export async function deleteAccount(prevState, formData) {
+    const session = await getServerSession(authOptions)
+    if (!session) {
+        return { message: 'Not authorized.' }
+    }
+
+    const userId = formData.get("userId");
+    const password = formData.get("password");
+    const sanitizedPassword = xss(password)
+
+    try {
+        await connectDB()
+
+        const user = await User.findById(userId)
+        if (!user) {
+            console.log('User does not exists.');
+            return { message: 'User does not exists.' }
+        }
+
+        const isPasswordValid = await compare(sanitizedPassword, user.password)
+        if (!isPasswordValid) {
+            console.log('Please insert valid credentials.');
+            return { message: 'Please insert valid credentials.' }
+        }
+
+        await User.findByIdAndDelete(userId)
+
+        revalidatePath('/')
+        console.log('User deleted.');
+        return { message: 'User deleted.' }
+    } catch (error) {
+        console.log('An error occurred while deleting the user: ', error);
+        return { message: 'An error occurred while deleting the user.' }
     }
 }

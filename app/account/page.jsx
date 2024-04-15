@@ -5,6 +5,7 @@ import Hero from "@/app/_components/account/hero/Hero";
 import Reviews from "@/app/_components/account/reviews/Reviews";
 import Addreview from "@/app/_components/account/addreview/Addreview";
 import { revalidateTag } from "next/cache";
+import Delete from "../_components/account/delete/Delete";
 
 export default async function Account() {
   const session = await getServerSession(authOptions);
@@ -21,6 +22,7 @@ export default async function Account() {
       <Hero user={user} />
       <Reviews userId={user?._id} reviews={reviews} />
       <Addreview userId={user?._id} />
+      <Delete userId={user?._id} />
     </main>
   );
 }

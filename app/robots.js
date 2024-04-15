@@ -5,6 +5,6 @@ export default function robots() {
             allow: '/',
             disallow: '/account/',
         },
-        sitemap: 'https://acme.com/sitemap.xml',
+        sitemap: 'https://addwebsite.com/sitemap.xml',
     }
 }
