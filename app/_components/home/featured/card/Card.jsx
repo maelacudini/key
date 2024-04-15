@@ -1,30 +1,26 @@
-import { getUser } from "@/app/_utils/functions";
 import style from "./card.module.scss";
-import Image from "next/image";
 
 export default async function Card({ review }) {
   const date = new Date(review.createdAt).toDateString();
+
   return (
     <article className={style.card}>
-      <div className={style.intro}>
+      <div className={style.title}>
         <div className={style.keywords}>
-          {review.keywords.slice(0, 3).map((keyword, index) => (
-            <small className={style.key} key={index}>
+          {review?.keywords?.map((keyword, i) => (
+            <small className="black" key={i}>
               {keyword}
             </small>
           ))}
         </div>
-        <p className="h3">{review.title}</p>
-        <p>
-          {review.description.length < 100
-            ? review.description
-            : review.description.slice(0, 200) + "..."}
-        </p>
+        <div className={style.intro}>
+          <p className="h4">{review?.title}</p>
+          <p>{review?.rating} / 10</p>
+        </div>
+        <p>By {review?.author}</p>
       </div>
-
-      <div className={style.info}>
-        <p>{date}</p>
-        <p className={style.rating}>RATING: {review.rating}</p>
+      <div className={style.description}>
+        <p className="italic">{review?.description}</p>
       </div>
     </article>
   );

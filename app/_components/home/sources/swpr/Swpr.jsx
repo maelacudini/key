@@ -18,7 +18,7 @@ export default function Swpr({ users }) {
       modules={[Navigation]}
       className="swiper"
     >
-      {users.map((user, index) => (
+      {users?.map((user, index) => (
         <SwiperSlide key={index}>
           <Card user={user} />
         </SwiperSlide>

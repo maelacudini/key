@@ -14,7 +14,7 @@ export default async function Featured() {
 
   return (
     <section id="featured" className={`card ${style.featured}`}>
-      <h2>Featured Reviews</h2>
+      <p className="h2">Featured Reviews</p>
       <Link href="/reviews" className="b-full">
         View All Reviews
       </Link>

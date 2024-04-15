@@ -9,15 +9,6 @@ import { GeneralContextProvider } from '@/context/context'
 //font
 const font = Inter({ subsets: ['latin'] })
 
-//schema
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Product',
-  name: 'Name',
-  image: 'Image',
-  description: 'Description',
-}
-
 //viewport
 export const viewport = {
   themeColor: 'white',
@@ -42,7 +33,7 @@ export const metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://acme.com'),
+  metadataBase: new URL('https://addwebsite.com'),
   alternates: {
     canonical: '/',
     languages: {
@@ -91,10 +82,6 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body id='body' className={font.className}>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
         <AuthProvider>
           <GeneralContextProvider>
             <Header />

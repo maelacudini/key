@@ -5,14 +5,6 @@ import Swpr from "./swpr/Swpr";
 export default async function Sources() {
   const { users, pagination } = await getAllUsers(1, 10);
 
-  if (!users) {
-    return (
-      <div className={style.nouser}>
-        <h2>No users found.</h2>
-      </div>
-    );
-  }
-
   return (
     <section id="sources" className={style.sources}>
       <h2>Sources</h2>
@@ -20,7 +12,13 @@ export default async function Sources() {
         Voices from avid readers like you. No need to sign up—dive into reviews
         and discover your next favorite book.
       </p>
-      <Swpr users={users} />
+      {users ? (
+        <Swpr users={users} />
+      ) : (
+        <div className={style.nouser}>
+          <p className="h2">No users found.</p>
+        </div>
+      )}
     </section>
   );
 }

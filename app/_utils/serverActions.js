@@ -26,7 +26,6 @@ export async function handleEditAvatar(prevState, formData) {
 
     try {
         const sanitizedAvatar = xss(avatar)
-
         if (!sanitizedAvatar || sanitizedAvatar.trim().length === 0) {
             console.log('Please fill the required fields.');
             return { message: 'Please fill the required fields.' }

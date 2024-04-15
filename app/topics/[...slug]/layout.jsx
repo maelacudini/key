@@ -17,7 +17,7 @@ export async function generateMetadata({ params }) {
       address: false,
       telephone: false,
     },
-    metadataBase: new URL("https://acme.com"),
+    metadataBase: new URL("https://addwebsite.com"),
     alternates: {
       canonical: "/",
       languages: {
@@ -41,12 +41,12 @@ export async function generateMetadata({ params }) {
       title: "Key",
       description:
         "Share your opinion on books you've read or simply look for your next great read",
-      url: "https://nextjs.org",
+      url: "https://addwebsite.com",
       siteName: "Key",
       authors: ["Maela"],
       images: [
         {
-          url: "https://nextjs.org/opengraph-image.png",
+          url: "https://addwebsite.com/opengraph-image.png",
           width: 1800,
           height: 1600,
           alt: "Key, book reviews",
@@ -60,7 +60,7 @@ export async function generateMetadata({ params }) {
       title: "Key",
       description:
         "Share your opinion on books you've read or simply look for your next great read",
-      images: ["https://nextjs.org/twitter-image.png"],
+      images: ["https://addwebsite.com/twitter-image.png"],
     },
   };
 }

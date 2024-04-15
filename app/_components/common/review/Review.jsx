@@ -6,7 +6,9 @@ export default function Review({ review }) {
       <div className={style.title}>
         <div className={style.keywords}>
           {review?.keywords.map((keyword, i) => (
-            <p key={i}>{keyword}</p>
+            <small className="black" key={i}>
+              {keyword}
+            </small>
           ))}
         </div>
         <div className={style.intro}>

@@ -14,7 +14,7 @@ export default function Swpr({ reviews }) {
       effect={"cards"}
       direction={"vertical"}
       grabCursor={true}
-      mousewheel={true}
+      mousewheel={false}
       navigation={false}
       loop={false}
       initialSlide={0}
